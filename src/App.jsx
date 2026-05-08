@@ -1,8 +1,8 @@
-import HelloClasse154 from "./components/HelloClasse154";
+import Form from "./components/Form";
 
 function App() {
   return (
-    <HelloClasse154 />
+    <Form />
   );
 }
 export default App;
