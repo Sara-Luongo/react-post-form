@@ -46,25 +46,24 @@ function Form() {
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+        <form onSubmit={handleSubmit} className="form-floatin">
+            <div className="">
                 <label htmlFor="author">Autore</label>
-                <input id="author" type="text" name="author" onChange={handleChange} value={formData.author} />
+                <input id="author" type="text" name="author" onChange={handleChange} value={formData.author} className="form-control" />
             </div>
-            <div>
+            <div className="">
                 <label htmlFor="Titolo">Titolo</label>
-                <input id="title" type="text" name="title" onChange={handleChange} value={formData.title} />
+                <input id="title" type="text" name="title" onChange={handleChange} value={formData.title} className="form-control" />
             </div>
-            <div>
+            <div className="">
                 <label htmlFor="body">inserisci contenuto</label>
-                <textarea id="body" name="body" onChange={handleChange} value={formData.body}></textarea>
+                <textarea id="body" name="body" onChange={handleChange} value={formData.body} className="form-control"></textarea>
             </div>
-            <div>
+            <div className="">
                 <label htmlFor="public">Public</label>
                 <input id="public" type="checkbox" name="public" onChange={handleChange} checked={formData.public} />
             </div>
-            {JSON.stringify(formData)}
-            <button type="submit">Invia</button>
+            <button type="submit" className="btn btn-primary">Invia</button>
         </form>
     )
 };
