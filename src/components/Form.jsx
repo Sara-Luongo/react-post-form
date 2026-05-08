@@ -4,9 +4,10 @@ const inputForm = {
     author: '',
     title: '',
     body: '',
-    public: true
+    public: false
 
 }
+const api_url = "https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts"
 function Form() {
     const [formData, setFormData] = useState(inputForm);
 
@@ -25,26 +26,45 @@ function Form() {
         setFormData(newFormData);
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        fetch(api_url, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(formData)
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then(json => {
+                console.log('tutto ok', json)
+            });
+    }
+
 
 
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="Autore">Autore</label>
-                <input type="text" name="author" onChange={handleChange} value={formData.author} />
+                <label htmlFor="author">Autore</label>
+                <input id="author" type="text" name="author" onChange={handleChange} value={formData.author} />
             </div>
             <div>
                 <label htmlFor="Titolo">Titolo</label>
-                <input type="text" name="title" onChange={handleChange} value={formData.title} />
+                <input id="title" type="text" name="title" onChange={handleChange} value={formData.title} />
             </div>
             <div>
-                <textarea name="body" onChange={handleChange} value={formData.body}>Contenuto</textarea>
+                <label htmlFor="body">inserisci contenuto</label>
+                <textarea id="body" name="body" onChange={handleChange} value={formData.body}></textarea>
             </div>
             <div>
-                <label htmlFor="">Nome</label>
-                <input type="checkbox" name="public" onChange={handleChange} checked={formData.public} />
+                <label htmlFor="public">Public</label>
+                <input id="public" type="checkbox" name="public" onChange={handleChange} checked={formData.public} />
             </div>
             {JSON.stringify(formData)}
+            <button type="submit">Invia</button>
         </form>
     )
 };
